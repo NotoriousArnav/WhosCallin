@@ -1,0 +1,21 @@
+[project]
+name = "whoscallin"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "colorama>=0.4.6",
+    "fastapi>=0.115.12",
+    "pysimdjson>=7.0.1",
+    "requests>=2.32.3",
+    "typer>=0.16.0",
+    "uvicorn>=0.34.3",
+]
+
+[dependency-groups]
+dev = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.14",
+    "mkdocstrings>=0.29.1",
+]
