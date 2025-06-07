@@ -4,6 +4,7 @@ requires = [
   "wheel>=0.36.2",
 ]
 build-backend = "setuptools.build_meta"
+
 [project]
 name = "whoscallin"
 version = "0.1.0"
@@ -30,9 +31,6 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/yourusername/whoscallin-py"
 "Bug Tracker" = "https://github.com/yourusername/whoscallin-py/issues"
-
-[project.scripts]
-whoscallin-cli = "whoscallin"
 
 [tool.setuptools.packages.find]
 where = ["."]

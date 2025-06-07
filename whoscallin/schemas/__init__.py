@@ -1,7 +1,7 @@
 from .Survey import SurveyData 
 from .PassthroughData import PassthroughData
 from .Phones import Phone
-from .Addresses import Address
+from .Addresses import Address, InternetAddress
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
@@ -11,9 +11,9 @@ class CallerInfo(BaseModel):
     score: float
     access: str
     enhanced: bool
-    phones: List[Phone]
-    addresses: List[Address]
-    internetAddresses: list = Field(default_factory=list)
+    phones: List[Phone] = Field(default_factory=list)
+    addresses: List[Address] = Field(default_factory=list)
+    internetAddresses: list[InternetAddress] = Field(default_factory=list)
     badges: list = Field(default_factory=list)
     tags: list = Field(default_factory=list)
     cacheTtl: int

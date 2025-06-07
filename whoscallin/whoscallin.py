@@ -31,9 +31,9 @@ class WhosCallin:
             Verifies the OTP and returns the authentication token.
     """
     def __init__(self, token: str) -> None:
-        self.token = f'Bearer {token}' # Tokens are Valid for 1 month
+        self.token = token # Tokens are Valid for 1 month
         self.headers = {
-            'Authorization': self.token,
+            'Authorization': f'Bearer {self.token}',
             'Accept': 'application/json'
         }
 

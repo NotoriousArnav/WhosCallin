@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python
@@ -19,8 +22,13 @@ jobs:
         curl -LsSf https://astral.sh/uv/install.sh | sh
     - name: Build package
       run: uv build
-    - name: Create GitHub Release Asset (Optional)
+    - name: Create GitHub Release
+      id: create_release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
       with:
+        tag_name: ${{ github.ref_name }}
+        name: Release ${{ github.ref_name }}
+        body: ${{ env.release_body }}
+        draft: false
+        prerelease: true
         files: dist/*

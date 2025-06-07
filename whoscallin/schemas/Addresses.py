@@ -4,6 +4,12 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
+class InternetAddress(BaseModel):
+    id: str
+    service: str
+    caption: str
+    type: str
+
 class Address(BaseModel):
     """
     Example Address Data
