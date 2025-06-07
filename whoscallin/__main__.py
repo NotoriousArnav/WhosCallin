@@ -3,7 +3,7 @@ import sys
 from whoscallin import WhosCallin
 from whoscallin.schemas import CallerInfo
 
-TOKEN_FILE = "trucaller.token"
+TOKEN_FILE = "truecaller.token"
 
 def do_login(args):
     phone = args.phone

@@ -58,12 +58,12 @@ class WhosCallin:
 
         return CallerInfo.from_dict(response.json())
 
-    def saveToken(self, filename: str = 'trucaller.token') -> None:
+    def saveToken(self, filename: str = 'truecaller.token') -> None:
         with open(filename, 'w') as file:
             file.write(self.token)
 
     @classmethod
-    def loadToken(cls, filename: str = 'trucaller.token') -> 'WhosCallin':
+    def loadToken(cls, filename: str = 'truecaller.token') -> 'WhosCallin':
         try:
             with open(filename, 'r') as file:
                 token = file.read().strip()
