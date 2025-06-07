@@ -3,8 +3,9 @@ from schemas import CallerInfo
 
 class WhosCallin:
     def __init__(self, token: str) -> None:
+        self.token = f'Bearer {token}' # Tokens are Valid for 1 month
         self.headers = {
-            'Authorization': f'Bearer {token}',
+            'Authorization': self.token,
             'Accept': 'application/json'
         }
 
@@ -19,6 +20,19 @@ class WhosCallin:
 
         return CallerInfo.from_dict(response.json())
 
+    def saveToken(self, filename: str = 'trucaller.token') -> None:
+        with open(filename, 'w') as file:
+            file.write(self.token)
+
+    @classmethod
+    def loadToken(cls, filename: str = 'trucaller.token') -> 'WhosCallin':
+        try:
+            with open(filename, 'r') as file:
+                token = file.read().strip()
+            return cls(token)
+        except FileNotFoundError:
+            raise ValueError(f"Token file '{filename}' not found. Please login first.")
+
     @classmethod
     def login(
         cls,
@@ -29,7 +43,7 @@ class WhosCallin:
         verboseInterrupt=lambda: input("Press Enter to Continue...")
     ) -> 'WhosCallin':
         sessionId = cls._generate_otp(phonenumber, countryCode, verbose=verbose)
-        verboseInterrupt()
+        if verbose: verboseInterrupt()
         if not sessionId:
             raise ValueError("Failed to generate OTP. Please check the phone number and country code.")
 
