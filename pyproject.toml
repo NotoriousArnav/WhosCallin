@@ -1,21 +1,44 @@
+[build-system]
+requires = [
+  "setuptools>=61.0",
+  "wheel>=0.36.2",
+]
+build-backend = "setuptools.build_meta"
 [project]
 name = "whoscallin"
 version = "0.1.0"
-description = "Add your description here"
+authors = [
+  { name="Arnav Ghosh", email="arnavghosh.bca.23@sittechno.edu.in" },
+]
+description = "An Attempt to reverse Engineer Truecaller's WebAPI"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.8" 
+keywords = ["api", "callerinfo", "reverse lookup"] 
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha", 
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 dependencies = [
-    "colorama>=0.4.6",
-    "fastapi>=0.115.12",
-    "pysimdjson>=7.0.1",
+    "pydantic>=2.10.6",
+    "pysimdjson>=6.0.2",
     "requests>=2.32.3",
-    "typer>=0.16.0",
-    "uvicorn>=0.34.3",
 ]
 
-[dependency-groups]
-dev = [
-    "mkdocs>=1.6.1",
-    "mkdocs-material>=9.6.14",
-    "mkdocstrings>=0.29.1",
-]
+[project.urls]
+"Homepage" = "https://github.com/yourusername/whoscallin-py"
+"Bug Tracker" = "https://github.com/yourusername/whoscallin-py/issues"
+
+[project.scripts]
+whoscallin-cli = "whoscallin"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+"whoscallin" = ["py.typed"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

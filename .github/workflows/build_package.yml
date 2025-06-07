@@ -1,0 +1,26 @@
+name: Publish Python Package (with uv)
+
+on:
+  release:
+    types: [published] # Trigger when a new release is published on GitHub
+  workflow_dispatch: # Allows manual triggering from GitHub Actions tab
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x' # Use the latest Python 3.x
+    - name: Install uv
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+    - name: Build package
+      run: uv build
+    - name: Create GitHub Release Asset (Optional)
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: dist/*

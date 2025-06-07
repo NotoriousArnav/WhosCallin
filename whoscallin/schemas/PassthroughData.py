@@ -4,7 +4,7 @@
 from pydantic import BaseModel
 from typing import Optional
 import base64
-import simdjson
+import json
 
 class PassthroughData(BaseModel):
     phone: Optional[str]
@@ -21,11 +21,8 @@ class PassthroughData(BaseModel):
     def from_base64(cls, b64_string: str) -> "PassthroughData":
         decoded_bytes = base64.b64decode(b64_string)
         decoded_str = decoded_bytes.decode('utf-8')
-        
-        # Parser
-        parser = simdjson.Parser()
 
-        json_data = parser.parse(decoded_str)
+        json_data = json.loads(decoded_str)
 
         mapped_data = {
             "field_22": json_data.get("22", None),
