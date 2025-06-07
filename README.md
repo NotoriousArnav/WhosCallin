@@ -1,9 +1,5 @@
 # whoscallin
-
 Whoscallin is a POC that aims to Reverse Engineer the Truecaller Web API to get the caller ID of a phone number.
-**NOTE: It is reccomended to have multiple Truecaller accounts, since Truecaller rate limits the number of requests you can make with a single account.**
-![Web](./assets/web.png)
-![CLI](./assets/terminal.png)
 
 ## Installation
 Assuming you have `uv` installed.
@@ -20,6 +16,9 @@ uv build
 cd dist
 pip install whoscallin-0.1.0-py3-none-any.whl
 ```
+**NOTE: It is reccomended to have multiple Truecaller accounts, since Truecaller rate limits the number of requests you can make with a single account.**
+![Web](./assets/web.png)
+![CLI](./assets/terminal.png)
 
 ## Usage
 ### CLI
